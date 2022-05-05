@@ -9,6 +9,7 @@ function Index(props) {
         return props.rivers.map((river) => (
             <div key={river.fly_id} className="fly">
                 <h1>{river.fly_name}</h1>
+                <Link to={`/rivers/${rivers_id}`} className="link-element"><p>LINK</p></Link>
             </div>
         ));
     }
@@ -18,7 +19,11 @@ function Index(props) {
 
     return (
         <>
+        
+        <div className="rivers_return">
             {props.rivers ? loaded() : loading()} 
+        </div>
+            
         </>
     )
 }

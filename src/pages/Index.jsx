@@ -1,15 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-function Index(props) {
+function Index() {
 
-    console.log('props.rivers: ', props.rivers)
+    const URL = 'http://localhost:4000/api';
+
+    const [trips, setTrips] = useState(null);
+
+    async function getTrips() {
+        const response = await fetch(URL);
+        const data = await response.json();
+        setTrips(data)
+    }
+
+    useEffect(() => {
+        getTrips();
+    }, [])
+
+    console.log('trips: ', trips)
 
     const loaded = () => {
-        return props.rivers.map((river) => (
-            <div key={river.fly_id} className="fly">
-                <h1>{river.fly_name}</h1>
-                <Link to={`/rivers`} className="link-element"><p>LINK</p></Link>
+        return trips.map((trip) => (
+            <div key={trip.river_id} className="trip">
+                <h3>{trip.river_name}</h3>
+                <Link to={`/trips`} className="link-element"><p>LINK</p></Link>
             </div>
         ));
     }
@@ -19,9 +33,9 @@ function Index(props) {
 
     return (
         <>
-        
+        <h2>Most Recent Trip</h2>
         <div className="rivers_return">
-            {props.rivers ? loaded() : loading()} 
+            {trips ? loaded() : loading()} 
         </div>
             
         </>

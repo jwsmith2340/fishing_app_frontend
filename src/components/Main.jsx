@@ -10,6 +10,10 @@ function Main(props) {
         <main>
             <Switch>
 
+                <Route exact path="/">
+                    <Index/>
+                </Route>
+
                 <Route exact path="/flies">
                     <Flies/>
                 </Route>

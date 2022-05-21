@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import '../public/styles/Header.scss'
 import { FaBars } from 'react-icons/fa'
 
-function Header(props) {
+import '../public/styles/Header.scss'
+
+function Header(props) {2
     return (
         <div className="navbar">
         <div className="mob-hamburger-box">

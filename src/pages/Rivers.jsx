@@ -1,10 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import '../public/styles/Rivers.scss'
 
-function Rivers(props) {
+function Rivers() {
+
+    const URL = 'http://localhost:4000/api/rivers';
+    const [rivers, setRivers] = useState(null);  
+
+    async function getRivers() {
+        const response = await fetch(URL);
+        const data = await response.json();
+        setRivers(data)
+    }
+
+    useEffect(() => {
+        getRivers();
+    }, [])
+
+    const loaded = () => {
+        return rivers.map((river) => (
+            <div key={river.river_id} className="rivers">
+                <h1>{river.river_name}</h1>
+                <Link to={`/flies`} className="link-element"><p>LINK</p></Link>
+            </div>
+        ));
+    }
+    const loading =() => {
+        return <h1>Loading...</h1>
+    }
+
     return (
         <>
-            <h1>Rivers page</h1>
+        <h1 className='rivers_h1'>Rivers</h1>
+             <div className="flies_return">
+                {rivers ? loaded() : loading()} 
+            </div>
         </>
     )
 }

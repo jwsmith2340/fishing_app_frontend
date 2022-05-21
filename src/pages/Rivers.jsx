@@ -20,7 +20,7 @@ function Rivers() {
     const loaded = () => {
         return rivers.map((river) => (
             <div key={river.river_id} className="rivers">
-                <h1>{river.river_name}</h1>
+                <h3>{river.river_name}</h3>
                 <Link to={`/flies`} className="link-element"><p>LINK</p></Link>
             </div>
         ));
@@ -32,8 +32,10 @@ function Rivers() {
     return (
         <>
         <h1 className='rivers_h1'>Rivers</h1>
-             <div className="flies_return">
+            <div className="rivers_box">
+             <div className="rivers_return">
                 {rivers ? loaded() : loading()} 
+            </div>
             </div>
         </>
     )

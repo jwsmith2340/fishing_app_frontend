@@ -3,7 +3,7 @@ import { FaBars } from 'react-icons/fa'
 
 import '../public/styles/Header.scss'
 
-function Header(props) {2
+function Header(props) {
     return (
         <div className="navbar">
         <div className="mob-hamburger-box">
